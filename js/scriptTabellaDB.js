@@ -1,17 +1,32 @@
 /* applica le librerie grafiche di jQuery UI ai bottoni */
-function jQueryBtn(){
-    $( "input[type=button]" ).button()
-}
-
-/* applica le librerie grafiche di jQuery UI per la generazione di una dialog di conferma */
 $(function() {
-	$("#dialogElim").dialog({
-		autoOpen: false
+    $( "input[type=button]" )
+		.button()
+});
+
+/* applica le librerie grafiche di jQuery UI per la generazione di un dialog di conferma, usato per confermare l'eliminazione di dati */
+$(function() {
+    $("#dialogElim").dialog({
+		autoOpen: false,
+		resizable: false,
+		height:212,
+		width:400,
+		modal: true,
+		buttons: {
+			/* bottoni presenti nella dialog, "Elimina dati" richiama la funzione per eliminare i dati definitivamente */
+			"Elimina dati": function() {
+				eliminaDati();
+				$( this ).dialog( "close" );
+			},
+			"Annulla": function() {
+				$( this ).dialog( "close" );
+			}
+		}
 	});
 	$("#dialogElim").css("font-size", "15px");
 });
 
-/* applica le librerie grafiche di jQuery UI per la generazione di un dialog, usato per la conferma di salvataggio dei dati */
+/* applica le librerie grafiche di jQuery UI per la generazione di un dialog, usato per confermare il salvataggio di dati */
 $(function() {
 	$( "#dialogSalva" ).dialog({
 		autoOpen: false,
@@ -57,22 +72,28 @@ $(function() {
 
 /* funzioni che vengono richiamate all'avvio della pagina */
 window.onload = function() {
-	jQueryBtn();
-
 	setFuncBtn();
 	
+	/* salvo i dati per alimentare la tabella in una variabile per poi usarla in altre funzioni */
 	var dati = arrJSON();
 	
 	alimTabella(dati);
 }
 
-/* definisce l'attributo onclick del bottone per salvare le modifiche */
+/* definisce l'attributo onclick dei bottoni per salvare e eliminare dati */
 function setFuncBtn() {
 	var btnSalva = document.getElementById("btnSalva");
+	var btnElimina = document.getElementById("btnElimina");
 	btnSalva.setAttribute("onclick", "salvaMod()");
+	btnElimina.setAttribute("onclick", "apriDialogElim()");
 }
 
-/* alimenta la tabella, richiama la funzione per aggiungere i bottoni e aggiungere l'ultima riga */
+/* apre il dialogo di conferma per l'eliminazione dei dati */
+function apriDialogElim(){
+	$("#dialogElim").dialog("open");
+}
+
+/* alimenta la tabella con i dati già esistenti e aggiunge in seguito le checkbox */
 function alimTabella(dati){
 	var table = document.getElementById("tabDati");
 	var tr = document.createElement("tr");
@@ -83,10 +104,6 @@ function alimTabella(dati){
 		th.innerHTML = key;
 		tr.appendChild(th);
     }
-	/* aggiungo una casella di intestazione vuota come riferimento di 
-	creazione delle caselle per contenere i bottoni in altre funzioni */
-	var thVuota = document.createElement("th");
-	tr.appendChild(thVuota);
 	table.appendChild(tr);
 	
 	for(i = 0; i < dati.length;i++)
@@ -94,11 +111,30 @@ function alimTabella(dati){
 		creaRigaTab(dati[i]);
     }
 	
-	aggiungiBTN();
+	tdCheckBox();
 	rigaVuota();
 }
 
-/* crea una riga contenente dati già esistenti */
+/* aggiunge una checkbox alla fine di ogni riga della tabella */
+function tdCheckBox() {
+	var table = document.getElementById("tabDati");
+	for(var i = 1; i < table.childNodes.length; i++){
+		if(i == 1){
+			var th = document.createElement("th");
+			th.innerHTML = "Elimina";
+			table.childNodes[i].appendChild(th);
+		}
+		else{
+			var td = document.createElement("td");
+			var checkbox = document.createElement("input");
+			checkbox.setAttribute("type", "checkbox");
+			td.appendChild(checkbox);
+			table.childNodes[i].appendChild(td);
+		}
+	}
+}
+
+/* crea una riga della tabella che contiene dati già esistenti e ne definisce il colore tramite due classi */
 function creaRigaTab(dato) {
 	var table = document.getElementById("tabDati");
 	var tr = document.createElement("tr");
@@ -120,11 +156,12 @@ function creaRigaTab(dato) {
 	table.appendChild(tr);
 }
 
-/* crea l'ultima riga della tabella vuota, usata per inserire nuovi dati */
+/* aggiunge l'ultima riga della tabella con le textarea per l'aggiunta di nuovi dati */
 function rigaVuota() {
 	var table = document.getElementById("tabDati");
 	var intest = table.childNodes[1];
 	var tr = document.createElement("tr");
+	
 	if(table.lastChild.className == "color1")
 		tr.setAttribute("class", "color2");
 	else
@@ -205,15 +242,15 @@ function salvaUltimaRiga(){
 	var innerCommTA = lastComm.firstChild;
 	var innerNotesTA = lastNotes.firstChild;
 
-	if(innerVarTA.value != ""){
-		if(controlloVarEsistente().indexOf(innerVarTA.value) == -1){
+	if(innerVarTA.value != ""){ //controllo che nel campo "variable" ci sia scritto qualcosa
+		if(controlloVarEsistente().indexOf(innerVarTA.value) == -1){ //controllo che il testo scritto nel campo "variable" non sia già presente in dati precedenti
+			//inserisco il testo modificato all'interno delle td delle textarea, togliendo quest'ultime
 			lastVar.innerHTML = innerVarTA.value;
 			lastComm.innerHTML = innerCommTA.value;
 			lastNotes.innerHTML = innerNotesTA.value;
-			lastVar.setAttribute("class","noChange");
+			lastVar.setAttribute("class","noChange"); //toglie la possibilità di poter cambiare il campo "variable" al dato appena salvato
 			disabilitaTD();
-			table.lastChild.lastChild.appendChild(nuovoBTN());
-			jQueryBtn();
+			nuovaCB();
 			rigaVuota();
 			$("#dialogSalva").dialog("open"); //apro il dialog per la conferma del salvataggio
 		}
@@ -226,52 +263,25 @@ function salvaUltimaRiga(){
 	}
 }
 
-/* crea un bottone per eliminare il dato della riga in cui è inserito */
-function nuovoBTN() {
-	var btnElimDato = document.createElement("input");
-	btnElimDato.setAttribute("type", "button");
-	btnElimDato.value = "Elimina dato";
-	btnElimDato.onclick = apriDialogElim;
-	return btnElimDato;
+/* crea e mette una nuova checkbox nell'ultima td dell'ultima riga della tabella ogni volta che si salva un nuovo dato */
+function nuovaCB(){
+	var table = document.getElementById("tabDati");
+	var checkbox = document.createElement("input");
+	checkbox.setAttribute("type", "checkbox");
+	table.lastChild.lastChild.appendChild(checkbox);
 }
 
-/* aggiunge un bottone per ogni riga non vuota della tabella */
-function aggiungiBTN() {
+/* elimina le righe di dati che sono state selezionate tramite le checkbox, solo dopo aver dato la conferma tramite il dialog */
+function eliminaDati(){
 	var table = document.getElementById("tabDati");
-	for(var i = 2; i < table.childNodes.length; i++){
-		var td = document.createElement("td");
-		td.appendChild(nuovoBTN());
-		table.childNodes[i].appendChild(td);
-		jQueryBtn();
-	}
-}
-
-/* definisce caratteristiche del dialog, se si schiaccia su "Elimina dati" la riga della tabella verrà eliminata */
-function apriDialogElim(){
-	var table = document.getElementById("tabDati");
-	var btnCaller = this;
-	$("#dialogElim").dialog({
-		resizable: false,
-		height:212,
-		width:400,
-		modal: true,
-		buttons: {
-			"Elimina dati": function() {
-				$( this ).dialog( "close" );
-				table.removeChild(btnCaller.parentNode.parentNode);
-				aggiornaColori();
-			},
-			"Annulla": function() {
-				$( this ).dialog( "close" );
-			}
+	for(var i = 1; i < table.childNodes.length-1; i++){
+		if(table.childNodes[i].lastChild.firstChild.checked == true){ //controllo per ogni riga che la checkbox sia stata spuntata o meno
+			table.removeChild(table.childNodes[i]); //se è la checkbox stata spuntata, elimino la riga
+			i--; //decremento la i del ciclo a causa dell'eliminazione di dati precedenti
 		}
-	});
-	$("#dialogElim").dialog("open");
-}
-
-/* aggiorno i colori della tabella dopo l'eliminazione di un dato */
-function aggiornaColori() {
-	var table = document.getElementById("tabDati");
+	}
+	
+	//cambio la classe di colori nelle righe in base a quella precedente, alternando una all'altra
 	for(var i = 2; i < table.childNodes.length; i++){
 		if(table.childNodes[i - 1].className == "color1")
 			table.childNodes[i].setAttribute("class", "color2");
@@ -285,10 +295,11 @@ function disabilitaTD() {
 	$('.noChange').off('dblclick');
 }
 
-/* abilita la modifica dei campi "comment", "NOTES" e "variable" (quest'ultimo solo nella creazione di un nuovo dato) */
+/* abilita la modifica dei campi "comment", "NOTES" e "variable" (quest'ultimo solo nella creazione di un nuovo dato) tramite un doppio click */
 function abilitaTD() {
 	$('.tdChange').on('dblclick', function() {
 		$this = $(this);
+		//al doppio click si crea una textarea all'interno della td con lo stesso testo della casella
 		$input = $('<textarea>', {
 			html: $this.text(),
 			blur: function() {
