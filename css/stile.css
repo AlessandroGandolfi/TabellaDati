@@ -78,11 +78,16 @@ gli altri dati nelle pagine dove sono presenti le tabelle */
 #divTabella {
 	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
-	left:10%;
+	left:0%;
 	top:20%;
 	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
-	width:80%;
+	width:100%;
 	height:100%;
+}
+
+textarea {
+    width: 100%;
+	height: 100%;
 }
 
 /* definisco vari aspetti della tabella */
@@ -100,7 +105,7 @@ table {
 /* definisco la grafica e la posizione delle scritte nelle caselle */
 td, th {
 	/* dato della grandezza del font */
-	font-size: 18px;
+	font-size: 12px;
 	/* dato della distanza del testo dai margini della casella */
 	padding: 10px;
 	/* allineamento del testo centrale */

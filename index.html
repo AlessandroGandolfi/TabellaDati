@@ -14,11 +14,11 @@
 		<script src="js/jquery-ui.js"></script>
 		
 		<!-- riferimenti allo script JavaScript per alimentare la tabella con i dati -->
-		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/scriptTabellaDB.js"></script>
 		
 		<!-- riferimenti al file CSS personale -->
 		<link rel="stylesheet" href="css/stile.css">
-
+		
 	</head>
 		
 	<body>
@@ -27,21 +27,19 @@
 		ID univoco, per una migliore gestione degli elementi 
 		della pagina HTML nei file JavaScript e CSS
 		-->
-		
-		<!-- riquadro contenente i bottoni per scegliere quali dati visualizzare -->
-		<div id="divIndex">
-			<div id="divHeader">
-				<!-- intestazione del riquadro -->
-				<h2>Seleziona una scelta</h2>
-			</div>
-			<div id="divBtnAlunni">
-				<!-- bottone per cambiare pagina e visualizzare i dati degli alunni -->
-				<input type="button" value="Visualizza i dati degli alunni" id="btnAlunni"></input>
-			</div>
-			<div id="divBtnClassi">
+		<div id="divContBtn">
+			<div id="divBtnSecon">
 				<!-- bottone per cambiare pagina e visualizzare i dati delle classi -->
-				<input type="button" value="Visualizza i dati delle classi" id="btnClassi"></input>
+				<input type="button" value="Aggiungi campo" id="btnAggiungi"></input>
 			</div>
+		</div>
+		
+		
+		<div id="divTabella">
+			<!-- tabella che verrà alimentata con i dati tramite l'esecuzione dello script JS -->
+			<table id="tabDati">
+			</table>
+			
 		</div>
 	</body>
 
