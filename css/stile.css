@@ -60,7 +60,7 @@ nelle pagine dove sono presenti le tabelle */
 
 /* definisco la posizione del div contenente il bottone per poter tornare 
 alla pagina principale di selezione nelle pagine dove sono presenti le tabelle */
-#divBtnInd {
+#divBtnSalva {
 	position:absolute;
 	left:5%;
 	top:20%;
@@ -68,7 +68,7 @@ alla pagina principale di selezione nelle pagine dove sono presenti le tabelle *
 
 /* definisco la posizione del div contenente il bottone per poter visualizzare 
 gli altri dati nelle pagine dove sono presenti le tabelle */
-#divBtnSecon {
+#divBtnElimina {
 	position:absolute;
 	left:45%;
 	top:20%;
@@ -105,13 +105,17 @@ table {
 /* definisco la grafica e la posizione delle scritte nelle caselle */
 td, th {
 	/* dato della grandezza del font */
-	font-size: 12px;
+	font-size:12px;
 	/* dato della distanza del testo dai margini della casella */
-	padding: 10px;
+	padding:10px;
 	/* allineamento del testo centrale */
 	text-align:center;
 	/* arrotondo gli angoli del riquadro */
 	border-radius:2px;
+}
+
+td {
+	height:50px;
 }
 
 /* classi che uso per distinguere meglio le righe tramite colori diversi */
