@@ -1,0 +1,79 @@
+tr.color1 {
+  background-color: #C0C0C0;
+}
+tr.color2 {
+  background-color: #E6E6E6;
+}
+
+table {
+	margin: 1px;
+	width:100%;	
+	font-family:"Arial Verdana", Arial, sans-serif;
+}
+
+td, th {
+	font-size: 18px;
+	padding: 10px;
+	text-align:center;
+}
+
+body {
+	background-color:#FAFAFA;
+}
+
+#divIndex {
+	background-color:#BDBDBD;
+	border-radius:35px;
+	position:absolute;
+	left:30%;
+	top:15%;
+	height:45%;
+	width:40%;
+}
+
+#divBtnAlunni {
+	position:absolute;
+	left:15%;
+	top:40%;
+}
+
+#divBtnClassi {
+	position:absolute;
+	left:16%;
+	top:65%;
+}
+
+#divHeader {
+	position:absolute;
+	left:20%;
+	top:10%;
+	font-family:"Arial Verdana", Arial, sans-serif;
+}
+
+#divContBtn {
+	position:absolute;
+	left:25%;
+	top:10%;
+	height:10%;
+	width:50%;
+}
+
+#divBtnInd {
+	position:absolute;
+	left:5%;
+	top:20%;
+}
+
+#divBtnSecon {
+	position:absolute;
+	left:45%;
+	top:20%;
+}
+
+#divTabella {
+	position:absolute;
+	left:10%;
+	top:20%;
+	width:80%;
+	height:100%;
+}
