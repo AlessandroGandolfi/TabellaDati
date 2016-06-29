@@ -29,13 +29,30 @@
 		-->
 		<div id="divContBtn">
 			<div id="divBtnSalva">
+				<!-- bottone per salvare le modifiche di dati esistenti e la crezione di nuovi dati -->
 				<input type="button" value="Salva modifiche" id="btnSalva"></input>
-			</div>
-			<div id="divBtnElimina">
-				<input type="button" value="Elimina" id="btnElimina"></input>
 			</div>
 		</div>
 		
+		<!-- div che uso per il dialog di conferma di eliminazione dei dati -->
+		<div id="dialogElim" title="Conferma eliminazione dati">
+			<p>I dati verranno permanentemente eliminati. Continuare?</p>
+		</div> 
+		
+		<!-- div che uso per il dialog di conferma di salvataggio dei dati -->
+		<div id="dialogSalva" title="Salvataggio dati">
+			  <p>I dati sono stati salvati correttamente.</p>
+		</div> 
+		
+		<!-- div usato per il dialog di errore nel caso un dato fosse già esistente -->
+		<div id="dialogDatoEsist" title="Errore">
+			  <p>Dato nel campo "variable" già esistente.</p>
+		</div> 
+		
+		<!-- div usato per il dialog di errore nel caso non fosse stato inserito il campo "variable" di un nuovo dato -->
+		<div id="dialogInsVar" title="Errore">
+			  <p>Inserisci il nuovo dato nel campo "variable".</p>
+		</div> 
 		
 		<div id="divTabella">
 			<!-- tabella che verrà alimentata con i dati tramite l'esecuzione dello script JS -->

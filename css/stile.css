@@ -52,7 +52,7 @@ nelle pagine dove sono presenti le tabelle */
 	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:25%;
-	top:10%;
+	top:5%;
 	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
 	height:10%;
 	width:50%;
@@ -79,15 +79,18 @@ gli altri dati nelle pagine dove sono presenti le tabelle */
 	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:0%;
-	top:20%;
+	top:15%;
 	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
 	width:100%;
 	height:100%;
 }
 
+/* imposto le dimensioni delle textarea in modo che occupino tutto lo spazio della td */
 textarea {
     width: 100%;
 	height: 100%;
+	min-width: 200px;
+	min-height: 100px;
 }
 
 /* definisco vari aspetti della tabella */
@@ -114,6 +117,7 @@ td, th {
 	border-radius:2px;
 }
 
+/* definisco l'altezza minima delle td */ 
 td {
 	height:50px;
 }
