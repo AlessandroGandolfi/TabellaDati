@@ -2,25 +2,43 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		
+		<!-- titolo della pagina -->
 		<title>Dati</title>
+		
+		<!-- riferimento alle librerie CSS di jQuery UI -->
 		<link rel="stylesheet" href="css/jquery-ui.css">
+		
+		<!-- riferimenti alle librerie JavaScript di jQuery e jQuery UI -->
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		
+		<!-- riferimenti allo script JavaScript per alimentare la tabella con i dati -->
 		<script type="text/javascript" src="js/scriptTabellaClassi.js"></script>
+		
+		<!-- riferimenti al file CSS personale -->
 		<link rel="stylesheet" href="css/stile.css">
 
 	</head>
 		
 	<body>
+		<!-- 
+		includo i vari elementi in più DIV, ognuno con un 
+		ID univoco, per una migliore gestione degli elementi 
+		della pagina HTML nei file JavaScript e CSS
+		-->
 		<div id="divContBtn">
 			<div id="divBtnInd">
+				<!-- bottone per poter tornare alla pagina principale di selezione -->
 				<input type="button" value="Torna indietro" id="btnIndietro"></input>
 			</div>
 			<div id="divBtnSecon">
+				<!-- bottone per cambiare pagina e visualizzare i dati degli alunni -->
 				<input type="button" value="Visualizza tabella alunni" id="btnAlunni"></input>
 			</div>
 		</div>
 		<div id="divTabella">
+			<!-- tabella che verrà alimentata con i dati tramite l'esecuzione dello script JS -->
 			<table id="tabClassi">
 			</table>
 		</div>

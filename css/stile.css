@@ -1,79 +1,125 @@
-tr.color1 {
-  background-color: #C0C0C0;
-}
-tr.color2 {
-  background-color: #E6E6E6;
-}
-
-table {
-	margin: 1px;
-	width:100%;	
-	font-family:"Arial Verdana", Arial, sans-serif;
-}
-
-td, th {
-	font-size: 18px;
-	padding: 10px;
-	text-align:center;
-}
-
+/* definisco il colore dello sfondo di ogni pagina */
 body {
-	background-color:#FAFAFA;
+	background-color:#FAFAFA; /*#FAFAFA*/
 }
 
+/* definisco la grafica, la posizione e le dimensioni del riquadro 
+nella pagina principale di selezione */
 #divIndex {
-	background-color:#BDBDBD;
+	/* dato del colore di sfondo */
+	background-color:#BDBDBD; /*#BDBDBD*/
+	/* dato del colore del testo */
+	color:#000000;
+	/* arrotondo gli angoli del riquadro */
 	border-radius:35px;
+	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina*/
 	position:absolute;
 	left:30%;
 	top:15%;
+	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina*/
 	height:45%;
 	width:40%;
 }
 
+/* definisco la posizione del div contenente il bottone nella pagina 
+principale di selezione per visualizzare i dati degli alunni */
 #divBtnAlunni {
 	position:absolute;
-	left:15%;
+	left:20%;
 	top:40%;
 }
 
+/* definisco la posizione del div contenente il bottone nella pagina 
+principale di selezione per visualizzare i dati delle classi */
 #divBtnClassi {
 	position:absolute;
-	left:16%;
+	left:21%;
 	top:65%;
 }
 
+/* definisco la posizione e il font del div contenente 
+la scritta nella pagina principale di selezione */
 #divHeader {
 	position:absolute;
-	left:20%;
+	left:25%;
 	top:10%;
 	font-family:"Arial Verdana", Arial, sans-serif;
 }
 
+/* definisco la posizione e le dimensioni del div contenente i bottoni 
+nelle pagine dove sono presenti le tabelle */
 #divContBtn {
+	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:25%;
 	top:10%;
+	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
 	height:10%;
 	width:50%;
 }
 
+/* definisco la posizione del div contenente il bottone per poter tornare 
+alla pagina principale di selezione nelle pagine dove sono presenti le tabelle */
 #divBtnInd {
 	position:absolute;
 	left:5%;
 	top:20%;
 }
 
+/* definisco la posizione del div contenente il bottone per poter visualizzare 
+gli altri dati nelle pagine dove sono presenti le tabelle */
 #divBtnSecon {
 	position:absolute;
 	left:45%;
 	top:20%;
 }
 
+/* definisco la posizione e le dimensioni del div contenente la tabella */
 #divTabella {
+	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:10%;
 	top:20%;
+	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
 	width:80%;
 	height:100%;
+}
+
+/* definisco vari aspetti della tabella */
+table {
+	/* metto il margine per delimitare le caselle */
+	margin:1px;
+	/* dato della larghezza della tabella */
+	width:100%;	
+	/* font utilizzato nella tabella */
+	font-family:"Arial Verdana", Arial, sans-serif;
+	/* dato dello spazio tra caselle */
+	border-spacing:3px;
+}
+
+/* definisco la grafica e la posizione delle scritte nelle caselle */
+td, th {
+	/* dato della grandezza del font */
+	font-size: 18px;
+	/* dato della distanza del testo dai margini della casella */
+	padding: 10px;
+	/* allineamento del testo centrale */
+	text-align:center;
+	/* arrotondo gli angoli del riquadro */
+	border-radius:2px;
+}
+
+/* classi che uso per distinguere meglio le righe tramite colori diversi */
+tr.color1 {
+	/* dato del colore di sfondo più scuro*/
+	background-color: #C0C0C0; /*#C0C0C0*/
+	/* dato del colore del font più chiaro 
+	color:#FFB701;*/
+}
+
+tr.color2 {
+	/* dato del colore di sfondo più chiaro*/
+	background-color: #E6E6E6; /*#E6E6E6*/
+	/* dato del colore del font più scuro 
+	color:#9E1A1A;*/
 }
