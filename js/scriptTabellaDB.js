@@ -1,6 +1,6 @@
 /* applica le librerie grafiche di jQuery UI ai bottoni */
 $(function() {
-    $( "input[type=button]" )
+    $( "input[type=submit]" )
 		.button()
 });
 
@@ -302,7 +302,7 @@ function abilitaTD() {
 		//al doppio click si crea una textarea all'interno della td con lo stesso testo della casella
 		$input = $('<textarea>', {
 			html: $this.text(),
-			blur: function() {
+			submit: function() {
 				$this.html($input.val());
 			}
 		}).appendTo($this.empty());
